@@ -61,7 +61,15 @@ function AddressBook() {
     document.querySelector(".first-name").innerText = contact.firstName;
     document.querySelector(".last-name").innerText = contact.lastName;
     document.querySelector(".phone-number").innerText = contact.phoneNumber;    document.querySelector("div#contact-details").removeAttribute("class");
+    document.querySelector("button.delete").setAttribute("id", contact.id);
+  document.querySelector("div#contact-details").removeAttribute("class");
 }   
+    function handleDelete(event) {
+        addressBook.deleteContact(event.target.id);
+        document.querySelector("button.delete").removeAttribute("id");
+        document.querySelector("div#contact-details").setAttribute("class", "hidden");
+        listContacts(addressBook);
+    }
   
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -76,4 +84,5 @@ function AddressBook() {
   window.addEventListener("load", function (){
     document.querySelector("form#new-contact").addEventListener("submit", handleFormSubmission);
     document.querySelector("div#contacts").addEventListener("click", displayContactDetails);
+    document.querySelector("button.delete").addEventListener("click", handleDelete);
 });
